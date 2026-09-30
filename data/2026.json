@@ -1,0 +1,52 @@
+{
+  "year": "2026",
+  "title": "GOOD 2026",
+  "tagline": "The global community conference of users and developers of Open OnDemand",
+  "dates": "March 9–12, 2026",
+  "location": "University of Utah, Salt Lake City",
+  "hostname": "good2026.openondemand.org",
+  "program_source": "good2026-schedule.json",
+  "recordings_source": null,
+  "hero_image": "assets/img/GOOD2025-1263_1.jpg",
+  "hero_image_alt": "Attendees at a GOOD Contributor Jam",
+  "overview": [
+    "GOOD 2026 brought the global Open OnDemand community to Salt Lake City for four days of talks, tutorials, birds-of-a-feather sessions, and hands-on work with the core team.",
+    "The conference opened with a Contributor Jam on March 9, followed by tutorials on the morning of March 10 and the main conference through March 12. Conference topics included AI and OOD, cloud integration, apps and the Appverse, OOD for education, client impacts, security and data privacy, customizations, and core development."
+  ],
+  "structure": [
+    {"when": "March 9", "what": "Contributor Jam"},
+    {"when": "March 10, morning", "what": "Tutorials"},
+    {"when": "March 10–12", "what": "Main conference"}
+  ],
+  "venue": {
+    "name": "University Guest House and Conference Center",
+    "org": "University of Utah",
+    "address": "110 Fort Douglas Blvd, Salt Lake City, UT 84113",
+    "thanks": "Hosted by the Center for High Performance Computing at the University of Utah.",
+    "map": "https://www.google.com/maps?q=University+Guest+House+and+Conference+Center+Salt+Lake+City"
+  },
+  "resources": [
+    {"label": "Program on pretalx", "url": "https://pretalx.com/good-2026/schedule/", "note": "The original schedule, while it remains online."},
+    {"label": "Code of conduct", "url": "https://numfocus.org/code-of-conduct"}
+  ],
+  "sponsors": [
+    {"tier": "Host", "orgs": [
+      {"name": "Center for High Performance Computing, University of Utah", "url": "https://www.chpc.utah.edu/", "logo": "assets/logos/CHPC_CTR_RGB.jpg"}
+    ]},
+    {"tier": "Platinum", "orgs": [
+      {"name": "ThinLinc by Cendio", "url": "https://www.cendio.com/", "logo": "assets/logos/thinlinc_logo_full-colour_1.png"}
+    ]},
+    {"tier": "Gold", "orgs": [
+      {"name": "MathWorks", "url": "https://www.mathworks.com/", "logo": "assets/logos/09_MW_logo_RGB_transparent.png"},
+      {"name": "HPC Systems", "url": "https://www.hpc.co.jp/", "logo": "assets/logos/HPC_SYSTEMS_Logo_2_1.png"},
+      {"name": "Do IT Now", "url": "https://www.doitnowgroup.com/", "logo": "assets/logos/Do_IT_Now_Gold.png"},
+      {"name": "Cambridge Computer", "url": "https://www.cambridgecomputer.com/", "logo": "assets/logos/Stacked-Logo-2017-Cambridge-Computer_1.png"}
+    ]},
+    {"tier": "Silver", "orgs": [
+      {"name": "SGX3", "url": "https://sciencegateways.org/", "logo": "assets/logos/SGX3-_Orange.png"},
+      {"name": "Globus", "url": "https://www.globus.org/", "logo": "assets/logos/Globus_Silver.png"},
+      {"name": "University of Utah", "url": "https://www.utah.edu/", "logo": "assets/logos/UU-Logo-HRZ_RGB-768x324.jpg"}
+    ]}
+  ],
+  "organized_by": "GOOD 2026 was organized with NumFOCUS."
+}

@@ -1,0 +1,125 @@
+{
+  "year": "2025",
+  "title": "GOOD 2025",
+  "tagline": "The inaugural conference for the global Open OnDemand community",
+  "dates": "March 17–20, 2025",
+  "location": "Harvard University, Cambridge, Massachusetts",
+  "hostname": "conference2025.openondemand.org",
+  "program_source": "good2025-schedule.json",
+  "recordings_source": "showcase-2025-clips.json",
+  "hero_image": "assets/img/venue-2025.jpg",
+  "hero_image_alt": "The CGIS South Building at Harvard University",
+  "overview": [
+    "GOOD 2025 was the inaugural global community conference of users and developers of Open OnDemand. Over four days in Cambridge, attendees shared what they had built, learned from the core team, and shaped the direction of the platform together.",
+    "The conference opened with a Contributor Jam on March 17, an immersive day working alongside Open OnDemand developers, followed by tutorials on the morning of March 18 and the main conference through March 20."
+  ],
+  "structure": [
+    {
+      "when": "March 17",
+      "what": "Contributor Jam"
+    },
+    {
+      "when": "March 18, morning",
+      "what": "Tutorials"
+    },
+    {
+      "when": "March 18–20",
+      "what": "Main conference"
+    }
+  ],
+  "venue": {
+    "name": "Center for Government and International Studies (CGIS) South Building",
+    "org": "Harvard University",
+    "address": "1730 Cambridge St., Cambridge, MA 02138",
+    "thanks": "Hosted by the Institute for Quantitative Social Science at Harvard University.",
+    "map": "https://www.google.com/maps?q=42.3745,-71.1125"
+  },
+  "resources": [
+    {
+      "label": "Session recordings",
+      "url": "https://vimeo.com/showcase/11728221",
+      "note": "46 talks, on the Ohio Technology Consortium Vimeo showcase. Each recorded talk is also linked from the program below."
+    },
+    {
+      "label": "Program on pretalx",
+      "url": "https://cfp.openondemand.org/2025/schedule/",
+      "note": "The original schedule, while it remains online."
+    },
+    {
+      "label": "Sponsorship prospectus",
+      "url": "https://drive.google.com/file/d/1zIoNbkJJLae1hPQAxXtedyeEruDR_bKt/view"
+    },
+    {
+      "label": "Code of conduct",
+      "url": "https://numfocus.org/code-of-conduct"
+    }
+  ],
+  "sponsors": [
+    {
+      "tier": "Host",
+      "orgs": [
+        {
+          "name": "Institute for Quantitative Social Science, Harvard University",
+          "url": "https://www.iq.harvard.edu/",
+          "logo": "assets/logos/iqsslogo_iqwebsite2019.png"
+        }
+      ]
+    },
+    {
+      "tier": "Platinum",
+      "orgs": [
+        {
+          "name": "Do IT Now",
+          "url": "https://www.doitnowgroup.com/",
+          "logo": "assets/logos/Do_IT_Now_-_primary.png"
+        },
+        {
+          "name": "Cambridge Computer",
+          "url": "https://www.cambridgecomputer.com/",
+          "logo": "assets/logos/CC_and_Juice_Horzat2x.png"
+        },
+        {
+          "name": "Intel and Dell",
+          "url": "https://www.dell.com/en-us/lp/dt/hpc-ai-innovation-lab",
+          "logo": "assets/logos/Intel_Dell_Logo_Slide_1.png"
+        }
+      ]
+    },
+    {
+      "tier": "Gold",
+      "orgs": [
+        {
+          "name": "Omnibond",
+          "url": "https://omnibond.com/",
+          "logo": "assets/logos/OB_LOGO_HPC-products.png"
+        },
+        {
+          "name": "Globus",
+          "url": "https://www.globus.org/",
+          "logo": "assets/logos/Globus_logo_BLUE_square.png"
+        },
+        {
+          "name": "Stack Science, SDSC",
+          "url": "https://www.sdsc.edu/about/sdsc_divisions/stack-science.html",
+          "logo": "assets/logos/logo-stack_science-full_colorat4x_1.png"
+        }
+      ]
+    },
+    {
+      "tier": "Silver",
+      "orgs": [
+        {
+          "name": "MathWorks",
+          "url": "https://www.mathworks.com/",
+          "logo": "assets/logos/09_MW_logo_RGB_transparent.png"
+        },
+        {
+          "name": "AWS",
+          "url": "https://aws.amazon.com/education/higher-ed/",
+          "logo": "assets/logos/AWS_logo_RGB.png"
+        }
+      ]
+    }
+  ],
+  "organized_by": "GOOD 2025 was organized with NumFOCUS."
+}
