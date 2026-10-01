@@ -7,16 +7,25 @@
   "hostname": "good2026.openondemand.org",
   "program_source": "good2026-schedule.json",
   "recordings_source": null,
-  "hero_image": "assets/img/GOOD2025-1263_1.jpg",
-  "hero_image_alt": "Attendees at a GOOD Contributor Jam",
+  "hero_image": "assets/img/venue-2026.png",
+  "hero_image_alt": "The University Guest House and Conference Center at the University of Utah, with the Wasatch Range behind it",
   "overview": [
     "GOOD 2026 brought the global Open OnDemand community to Salt Lake City for four days of talks, tutorials, birds-of-a-feather sessions, and hands-on work with the core team.",
     "The conference opened with a Contributor Jam on March 9, followed by tutorials on the morning of March 10 and the main conference through March 12. Conference topics included AI and OOD, cloud integration, apps and the Appverse, OOD for education, client impacts, security and data privacy, customizations, and core development."
   ],
   "structure": [
-    {"when": "March 9", "what": "Contributor Jam"},
-    {"when": "March 10, morning", "what": "Tutorials"},
-    {"when": "March 10–12", "what": "Main conference"}
+    {
+      "when": "March 9",
+      "what": "Contributor Jam"
+    },
+    {
+      "when": "March 10, morning",
+      "what": "Tutorials"
+    },
+    {
+      "when": "March 10–12",
+      "what": "Main conference"
+    }
   ],
   "venue": {
     "name": "University Guest House and Conference Center",
@@ -26,27 +35,195 @@
     "map": "https://www.google.com/maps?q=University+Guest+House+and+Conference+Center+Salt+Lake+City"
   },
   "resources": [
-    {"label": "Program on pretalx", "url": "https://pretalx.com/good-2026/schedule/", "note": "The original schedule, while it remains online."},
-    {"label": "Code of conduct", "url": "https://numfocus.org/code-of-conduct"}
+    {
+      "label": "Program on pretalx",
+      "url": "https://pretalx.com/good-2026/schedule/",
+      "note": "The original schedule, while it remains online."
+    },
+    {
+      "label": "Exhibitor prospectus (PDF)",
+      "url": "assets/docs/GOOD-2026-exhibitor-prospectus.pdf"
+    },
+    {
+      "label": "Speaker guidelines (PDF)",
+      "url": "assets/docs/GOOD-2026-speaker-guidelines.pdf"
+    },
+    {
+      "label": "Code of conduct",
+      "url": "https://numfocus.org/code-of-conduct"
+    }
   ],
   "sponsors": [
-    {"tier": "Host", "orgs": [
-      {"name": "Center for High Performance Computing, University of Utah", "url": "https://www.chpc.utah.edu/", "logo": "assets/logos/CHPC_CTR_RGB.jpg"}
-    ]},
-    {"tier": "Platinum", "orgs": [
-      {"name": "ThinLinc by Cendio", "url": "https://www.cendio.com/", "logo": "assets/logos/thinlinc_logo_full-colour_1.png"}
-    ]},
-    {"tier": "Gold", "orgs": [
-      {"name": "MathWorks", "url": "https://www.mathworks.com/", "logo": "assets/logos/09_MW_logo_RGB_transparent.png"},
-      {"name": "HPC Systems", "url": "https://www.hpc.co.jp/", "logo": "assets/logos/HPC_SYSTEMS_Logo_2_1.png"},
-      {"name": "Do IT Now", "url": "https://www.doitnowgroup.com/", "logo": "assets/logos/Do_IT_Now_Gold.png"},
-      {"name": "Cambridge Computer", "url": "https://www.cambridgecomputer.com/", "logo": "assets/logos/Stacked-Logo-2017-Cambridge-Computer_1.png"}
-    ]},
-    {"tier": "Silver", "orgs": [
-      {"name": "SGX3", "url": "https://sciencegateways.org/", "logo": "assets/logos/SGX3-_Orange.png"},
-      {"name": "Globus", "url": "https://www.globus.org/", "logo": "assets/logos/Globus_Silver.png"},
-      {"name": "University of Utah", "url": "https://www.utah.edu/", "logo": "assets/logos/UU-Logo-HRZ_RGB-768x324.jpg"}
-    ]}
+    {
+      "tier": "Hosts",
+      "orgs": [
+        {
+          "name": "Center for High Performance Computing, University of Utah",
+          "url": "https://www.chpc.utah.edu/",
+          "logo": "assets/logos/CHPC_CTR_RGB.jpg"
+        },
+        {
+          "name": "University of Utah",
+          "url": "https://www.utah.edu/",
+          "logo": "assets/logos/UU-Logo-HRZ_RGB-768x324.jpg"
+        }
+      ]
+    },
+    {
+      "tier": "Platinum",
+      "orgs": [
+        {
+          "name": "ThinLinc by Cendio",
+          "url": "https://www.cendio.com/",
+          "logo": "assets/logos/thinlinc_logo_full-colour_1.png"
+        }
+      ]
+    },
+    {
+      "tier": "Gold",
+      "orgs": [
+        {
+          "name": "MathWorks",
+          "url": "https://www.mathworks.com/",
+          "logo": "assets/logos/09_MW_logo_RGB_transparent.png"
+        },
+        {
+          "name": "HPC Systems",
+          "url": "https://www.hpc.co.jp/",
+          "logo": "assets/logos/HPC_SYSTEMS_Logo_2_1.png"
+        },
+        {
+          "name": "Do IT Now",
+          "url": "https://www.doitnowgroup.com/",
+          "logo": "assets/logos/Do_IT_Now_Gold.png"
+        },
+        {
+          "name": "Cambridge Computer",
+          "url": "https://www.cambridgecomputer.com/",
+          "logo": "assets/logos/Stacked-Logo-2017-Cambridge-Computer_1.png"
+        }
+      ]
+    },
+    {
+      "tier": "Silver",
+      "orgs": [
+        {
+          "name": "SGX3",
+          "url": "https://sciencegateways.org/",
+          "logo": "assets/logos/SGX3-_Orange.png"
+        },
+        {
+          "name": "Globus",
+          "url": "https://www.globus.org/",
+          "logo": "assets/logos/Globus_Silver.png"
+        }
+      ]
+    }
   ],
-  "organized_by": "GOOD 2026 was organized with NumFOCUS."
+  "organized_by": "GOOD 2026 was organized with NumFOCUS.",
+  "conference_topics": [
+    "AI and OOD",
+    "Cloud Integration",
+    "Apps and the Appverse",
+    "OOD for Education",
+    "Client Impacts",
+    "Security and Data Privacy",
+    "OOD Customizations",
+    "Core Development"
+  ],
+  "photo": {
+    "src": "assets/img/GOOD2025-1263_1.jpg",
+    "alt": "Attendees at a GOOD Contributor Jam"
+  },
+  "accessibility": [
+    "The Global Open OnDemand Conference values disability and supports accessibility. The conference welcomes individuals with disabilities and encourages participants to request reasonable accommodations. Requests for event accommodations or questions about accessibility went to info@good.openondemand.org.",
+    "Requests for Sign Language interpreters and/or CART providers were asked for at least two weeks in advance where possible, subject to availability."
+  ],
+  "code_of_conduct": "Attendees were subject to the NumFOCUS Code of Conduct. The conference valued the participation of each attendee and expected everyone to show respect and courtesy to one another.",
+  "committee": [
+    {
+      "role": "Conference Co-Chairs",
+      "people": [
+        "Alan Chalker, Ohio Supercomputer Center",
+        "Julie Ma, Massachusetts Green High Performance Computing Center"
+      ]
+    },
+    {
+      "role": "Welcoming Committee Chairs",
+      "people": [
+        "Sarah Duncan, Harvard IQSS",
+        "Huston Rogers, Mississippi State University",
+        "Dori Sajdak, University at Buffalo",
+        "Amanda Black, The Jackson Laboratory",
+        "Jaime Cleek, Dartmouth College"
+      ]
+    },
+    {
+      "role": "Communications and Outreach Chairs",
+      "people": [
+        "Jason Simms, Swarthmore College",
+        "Sean Anderson, Wake Forest University",
+        "Forough Ghahramani, NJ Edge"
+      ]
+    },
+    {
+      "role": "Activities Chairs",
+      "people": [
+        "Martin Cuma, University of Utah",
+        "Emily Moffat Sadeghi, Ohio Supercomputer Center"
+      ]
+    },
+    {
+      "role": "Contributor Jam Chairs",
+      "people": [
+        "Travis Ravert, Ohio Supercomputer Center",
+        "Braeden Singleton, Ohio Supercomputer Center"
+      ]
+    },
+    {
+      "role": "Program Chairs",
+      "people": [
+        "Brandon Biggs, Idaho National Laboratory",
+        "Ayush Chaturvedi, Washington University in St. Louis",
+        "David Carlson, Stony Brook University"
+      ]
+    },
+    {
+      "role": "Program Committee",
+      "people": [
+        "Martin Cuma, University of Utah",
+        "Len Wisniewski, Harvard IQSS",
+        "Jaime Cleek, Dartmouth College",
+        "Em Dragowsky, CWRU",
+        "Evan Felix, Pacific Northwest National Laboratory",
+        "Tom Furlani, University at Buffalo",
+        "Ping Luo, Yale University",
+        "Jason Simms, Swarthmore College",
+        "Emily Moffat Sadeghi, Ohio Supercomputer Center",
+        "Tom Krobatsch, National Institute of Computational Sciences",
+        "Mahmoud Junior Suleman, University of Cincinnati",
+        "Sarah Duncan, Harvard IQSS",
+        "Arsalan Akhter, Northeastern University",
+        "Sean Anderson, Wake Forest University"
+      ]
+    }
+  ],
+  "session_tags": {
+    "AI OnDemand": [
+      "A Wizard for Complexity",
+      "Accessible LLM Inference",
+      "Auto Machine Learning on Open OnDemand",
+      "Bridging AI and Biomedical Workflows",
+      "Building LLM Inference Services",
+      "Open OnDemand Developer Team Open Mic",
+      "From Zero to Productive",
+      "Job Sharing Between Users with Multitenant Apps",
+      "KROOD",
+      "OnDemand Andragogy",
+      "OnDemand Application Development Internship at Tufts",
+      "MATLAB + OOD",
+      "Repurposed Hardware to Modern Research",
+      "Streamlining LLM access"
+    ]
+  }
 }

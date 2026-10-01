@@ -32,7 +32,7 @@
     "org": "Harvard University",
     "address": "1730 Cambridge St., Cambridge, MA 02138",
     "thanks": "Hosted by the Institute for Quantitative Social Science at Harvard University.",
-    "map": "https://www.google.com/maps?q=42.3745,-71.1125"
+    "map": "https://www.google.com/maps?q=1730+Cambridge+St,+Cambridge,+MA+02138"
   },
   "resources": [
     {
@@ -46,12 +46,12 @@
       "note": "The original schedule, while it remains online."
     },
     {
-      "label": "Sponsorship prospectus",
-      "url": "https://drive.google.com/file/d/1zIoNbkJJLae1hPQAxXtedyeEruDR_bKt/view"
-    },
-    {
       "label": "Code of conduct",
       "url": "https://numfocus.org/code-of-conduct"
+    },
+    {
+      "label": "Sponsorship prospectus (PDF)",
+      "url": "assets/docs/GOOD-2025-sponsorship-prospectus.pdf"
     }
   ],
   "sponsors": [
@@ -80,7 +80,7 @@
         },
         {
           "name": "Intel and Dell",
-          "url": "https://www.dell.com/en-us/lp/dt/hpc-ai-innovation-lab",
+          "url": "https://www.dell.com/en-us/learn/it-infrastructure/lp/hpc/hpc-ai-innovation-lab",
           "logo": "assets/logos/Intel_Dell_Logo_Slide_1.png"
         }
       ]
@@ -102,6 +102,11 @@
           "name": "Stack Science, SDSC",
           "url": "https://www.sdsc.edu/about/sdsc_divisions/stack-science.html",
           "logo": "assets/logos/logo-stack_science-full_colorat4x_1.png"
+        },
+        {
+          "name": "AWS",
+          "url": "https://aws.amazon.com/education/higher-ed/",
+          "logo": "assets/logos/AWS_logo_RGB.png"
         }
       ]
     },
@@ -112,14 +117,131 @@
           "name": "MathWorks",
           "url": "https://www.mathworks.com/",
           "logo": "assets/logos/09_MW_logo_RGB_transparent.png"
-        },
-        {
-          "name": "AWS",
-          "url": "https://aws.amazon.com/education/higher-ed/",
-          "logo": "assets/logos/AWS_logo_RGB.png"
         }
       ]
     }
   ],
-  "organized_by": "GOOD 2025 was organized with NumFOCUS."
+  "organized_by": "GOOD 2025 was organized with NumFOCUS.",
+  "conference_topics": [
+    "OOD Customizations",
+    "Apps",
+    "OOD for education",
+    "Client Impacts",
+    "Security and Data Privacy",
+    "Cloud Integration",
+    "Core Development"
+  ],
+  "accessibility": [
+    "The Global Open OnDemand Conference values disability and supports accessibility. The conference welcomes individuals with disabilities and encourages participants to request reasonable accommodations. Requests for event accommodations or questions about accessibility went to info@good.openondemand.org.",
+    "Requests for Sign Language interpreters and/or CART providers were asked for at least two weeks in advance where possible, subject to availability."
+  ],
+  "code_of_conduct": "Attendees were subject to the NumFOCUS Code of Conduct. The conference valued the participation of each attendee and expected everyone to show respect and courtesy to one another.",
+  "committee": [
+    {
+      "role": "Conference Co-Chairs",
+      "people": [
+        "Alan Chalker, Ohio Supercomputer Center",
+        "Julie Ma, Massachusetts Green High Performance Computing Center"
+      ]
+    },
+    {
+      "role": "Program Chairs",
+      "people": [
+        "Brandon Biggs, Idaho National Laboratory",
+        "Martin Cuma, University of Utah",
+        "Len Wisniewski, Harvard IQSS"
+      ]
+    },
+    {
+      "role": "Communications and Outreach Chairs",
+      "people": [
+        "Catherine Morie, Washington University in St. Louis",
+        "Jason Simms, Swarthmore College"
+      ]
+    },
+    {
+      "role": "Activities Chairs",
+      "people": [
+        "Michael Reekie, Harvard IQSS",
+        "Gaby Rodriguez, Harvard Medical School"
+      ]
+    },
+    {
+      "role": "Welcoming Committee Chairs",
+      "people": [
+        "Sarah Duncan, Harvard IQSS",
+        "Huston Rogers, Mississippi State University",
+        "Dori Sajdak, University at Buffalo"
+      ]
+    },
+    {
+      "role": "Proceedings Chairs",
+      "people": [
+        "David Carlson, Stony Brook University",
+        "Tom Krobatsch, National Institute of Computational Sciences",
+        "Ping Luo, Yale University"
+      ]
+    },
+    {
+      "role": "Sponsorships Chairs",
+      "people": [
+        "Emily Dragowsky, CWRU",
+        "Chase Eyster, Ohio Supercomputer Center"
+      ]
+    },
+    {
+      "role": "Contributor Jam Chairs",
+      "people": [
+        "Travis Ravert, Ohio Supercomputer Center",
+        "Emily Moffat Sadeghi, Ohio Supercomputer Center"
+      ]
+    },
+    {
+      "role": "Program Committee",
+      "people": [
+        "Brandon Biggs (Chair), Idaho National Laboratory",
+        "Martin Cuma (Chair), University of Utah",
+        "Len Wisniewski (Chair), Harvard IQSS",
+        "David Carlson, Stony Brook University",
+        "Jaime Cleek, Dartmouth College",
+        "Ryan DeRue, Purdue University",
+        "Em Dragowsky, CWRU",
+        "Evan Felix, Pacific Northwest National Laboratory",
+        "Tom Furlani, University at Buffalo",
+        "Ping Luo, Yale University",
+        "Catherine Morie, Washington University in St. Louis",
+        "Jason Simms, Swarthmore College"
+      ]
+    },
+    {
+      "role": "Proceedings Committee",
+      "people": [
+        "David Carlson (Chair), Stony Brook University",
+        "Tom Krobatsch (Chair), National Institute of Computational Sciences",
+        "Ping Luo (Chair), Yale University",
+        "Brandon Biggs, Idaho National Laboratory",
+        "Ryan DeRue, Purdue University",
+        "Em Dragowsky, CWRU"
+      ]
+    }
+  ],
+  "memorial": {
+    "title": "In memory of Chris Blanton",
+    "photo": "assets/img/chris-blanton.png",
+    "intro": "We are deeply grateful for the contributions of the late Chris Blanton to the GOOD 2025 Organizing Committee. Chris was a dedicated and insightful member who brought warmth, humor, and wisdom to our work. He passed away unexpectedly, and his absence is felt profoundly by all who had the privilege of working with him. Chris's legacy will continue to inspire our efforts, and he will be greatly missed.",
+    "paragraphs": [
+      "Christopher Blanton, beloved son, brother and friend, passed away on October 24, 2024 at the age of 42.",
+      "Chris was born in Mullins, South Carolina and his southern drawl would put people he interacted with at ease. Chris received a doctorate in chemistry from Syracuse University and took great pride in being an Orange. Chris worked for the past decade as a research facilitator and HPC advocate and champion, helping to teach and enable others to love supercomputing and scientific discovery. He had positions at Penn State, Georgia Tech and North Carolina State Universities and had started taking on leadership roles at the national level for academic supercomputing.",
+      "Chris always excelled in his endeavors, and he often overcame many challenges to do so. He was an avid reader early in life while dealing with undiagnosed dyslexia. While he battled thyroid issues as a child but still became the only freshman on his high school varsity football team. He earned the academic respect of his peers at every educational stage even while fighting undiagnosed ADHD. His childhood joys included martial arts, wrestling, and a love of the army, thanks to his grandfather who he idolized along with his father. His love of computers and technology developed thanks to a gift of a DOS-based laptop gifted to him by an uncle. While his nickname changed from Mega-Blanton to Doc, his natural ability combined with a tenacious drive did not change. Through all, Chris continued to be a team player and build up those around him.",
+      "Chris was a fiercely loyal and principled man, and had a deep impact on his friends and family. His dedication to learning and impressive commitment towards picking up and mastering unique hobbies amazed all. His desire to continue learning and growing as an individual led him to a full, rich and eclectic life, as well as leaving behind many unread books on potential new hobbies and skills that he was preparing to learn. While most of this was a desire to better understand things that he took delight in, Chris also spent time learning about the things that his friends and family held dear, allowing him to make those he cared about feel included and appreciated. Chris was a pagan, loved the occult, had an appreciation for Norse mythology and Hermeticism, and delighted in off-beat art from film to comic books. Chris encouraged people to be themselves and to take joy in what makes them unique.",
+      "Chris was preceded in death by his father, Johnny Blanton, and is survived by his mother, Karen Blanton; his brother, Brian Blanton, and his beloved cat, Pixie.",
+      "Chris's family and friends suggest that everyone raise a glass of their favorite mead and say skål to exploring the joys of life, read a well-loved book, and engage in a new or forgotten hobby in Chris's honor. In lieu of flowers, the family requests that donations be made to the Frabjous Catfe (frabjouscatfe.com) in Wake Forest, North Carolina, or to a local chapter of the Society for the Prevention of Cruelty to Animals (SPCA)."
+    ]
+  },
+  "recording_overrides": {
+    "WKECSV": 1088754669,
+    "FBJKT8": 1089703114,
+    "MH8ND3": 1090198189,
+    "WXPYBE": null
+  }
 }

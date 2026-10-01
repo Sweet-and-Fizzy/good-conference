@@ -37,13 +37,22 @@ def md(text):
     text = text.replace("\r\n", "\n").strip()
     text = E(text)
     text = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r'<a href="\2">\1</a>', text)
-    text = re.sub(r"(?<![\w/\"=>])(https?://[^\s<)\"]+)", r'<a href="\1">\1</a>', text)
-    text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"(?<![\w/\"=>])(https?://[^\s<)\"]+?)([.,;:!?)]*)(?=\s|$|<)", r'<a href="\1">\1</a>\2', text)
+    text = re.sub(r"\*\*([^*\n]+)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"(?<![\w*])\*([^*\n]+)\*(?![\w*])", r"<em>\1</em>", text)
+    text = re.sub(r"(?<![\w_])_([^_\n]+)_(?![\w_])", r"<em>\1</em>", text)
     out = []
     for block in re.split(r"\n\s*\n", text):
-        lines = block.split("\n")
-        if all(re.match(r"\s*[-*] ", l) for l in lines):
-            out.append("<ul>" + "".join("<li>%s</li>" % re.sub(r"^\s*[-*] ", "", l) for l in lines) + "</ul>")
+        lines = [l for l in block.split("\n") if l.strip()]
+        if not lines:
+            continue
+        if all(re.match(r"\s*[-*•] ", l) for l in lines):
+            items = "".join('<li class="%s">%s</li>' % ("nested" if re.match(r"\s{2,}|\t", l) else "", re.sub(r"^\s*[-*•] ", "", l)) for l in lines)
+            out.append("<ul>" + items + "</ul>")
+        elif all(re.match(r"\s*\d+[.)] ", l) for l in lines):
+            out.append("<ol>" + "".join("<li>%s</li>" % re.sub(r"^\s*\d+[.)] ", "", l) for l in lines) + "</ol>")
+        elif len(lines) == 1 and re.match(r"#{1,4} ", lines[0]):
+            out.append("<p><strong>%s</strong></p>" % re.sub(r"^#{1,4} ", "", lines[0]))
         else:
             out.append("<p>%s</p>" % "<br>".join(lines))
     return "\n".join(out)
@@ -92,12 +101,27 @@ def load_year(year):
     recordings = {}
     if meta.get("recordings_source"):
         clips = json.load(open(os.path.join(DATA, meta["recordings_source"])))
-        titles = {norm(t["title"]): t["code"] for t in talks}
+        overrides = meta.get("recording_overrides", {})
+        titles = {}
+        for t in talks:
+            titles.setdefault(norm(t["title"]), []).append(t["code"])
+        claimed = set(v for v in overrides.values() if v)
         for c in clips:
+            if c["vimeo_id"] in claimed:
+                continue
             ct = norm(re.sub(r"\s*-\s*GOOD Conference \d{4}\s*$", "", c["title"]))
             best = max(titles, key=lambda k: difflib.SequenceMatcher(None, ct, k).ratio())
-            if difflib.SequenceMatcher(None, ct, best).ratio() >= 0.75:
-                recordings[titles[best]] = c["vimeo_id"]
+            codes = [k for k in titles[best] if k not in overrides and k not in recordings]
+            # an ambiguous title (several talks, no override) is left for a human to settle
+            if difflib.SequenceMatcher(None, ct, best).ratio() >= 0.75 and len(codes) == 1:
+                recordings[codes[0]] = c["vimeo_id"]
+            elif len(codes) > 1:
+                print(f"  ambiguous clip {c['vimeo_id']} '{c['title']}' matches {codes}; add a recording_overrides entry")
+        for code, vid in overrides.items():
+            if vid:
+                recordings[code] = vid
+            else:
+                recordings.pop(code, None)
 
     people = OrderedDict()
     for t in talks:
@@ -193,9 +217,39 @@ def year_index(year, meta, talks, recordings, people):
     structure = "".join(f"<li><b>{E(s['when'])}</b> {E(s['what'])}</li>" for s in meta["structure"])
     overview = "".join(f"<p>{E(p)}</p>" for p in meta["overview"])
     v = meta["venue"]
+    def rurl(u):
+        return u if u.startswith("http") else "../" + u
     resources = "".join(
-        f'<li><a href="{E(r["url"])}">{E(r["label"])}</a>{(" <span class=\"note\">" + E(r["note"]) + "</span>") if r.get("note") else ""}</li>'
+        f'<li><a href="{E(rurl(r["url"]))}">{E(r["label"])}</a>{(" <span class=\"note\">" + E(r["note"]) + "</span>") if r.get("note") else ""}</li>'
         for r in meta["resources"])
+    topics = ""
+    if meta.get("conference_topics"):
+        topics = "<h3>Conference topics</h3><ul class=\"topics\">" + "".join(f"<li>{E(x)}</li>" for x in meta["conference_topics"]) + "</ul>"
+    photo = ""
+    if meta.get("photo"):
+        photo = f'<figure class="photo"><img src="../{E(meta["photo"]["src"])}" alt="{E(meta["photo"]["alt"])}" loading="lazy"></figure>'
+    committee = ""
+    if meta.get("committee"):
+        groups = "".join(
+            f'<div class="role"><h3>{E(g["role"])}</h3><ul>' + "".join(f"<li>{E(p)}</li>" for p in g["people"]) + "</ul></div>"
+            for g in meta["committee"])
+        committee = f'<section id="committee"><h2>Organizing committee</h2><div class="committee">{groups}</div></section>'
+    policies = ""
+    if meta.get("accessibility") or meta.get("code_of_conduct"):
+        acc = "".join(f"<p>{E(p)}</p>" for p in meta.get("accessibility", []))
+        coc = f'<p>{E(meta["code_of_conduct"])}</p>' if meta.get("code_of_conduct") else ""
+        policies = f'<section class="two-col policies"><div><h2>Accessibility and accommodation</h2>{acc}</div><div><h2>Code of conduct</h2>{coc}</div></section>'
+    memorial = ""
+    if meta.get("memorial"):
+        m = meta["memorial"]
+        paras = "".join(f"<p>{E(p)}</p>" for p in m["paragraphs"])
+        memorial = f"""<section class="memorial" id="memorial">
+  <div class="memorial-head">
+    <img src="../{E(m["photo"])}" alt="Chris Blanton" loading="lazy">
+    <div><h2>{E(m["title"])}</h2><p class="lede">{E(m["intro"])}</p></div>
+  </div>
+  <details><summary>Remembering Chris</summary><div class="narrow">{paras}</div></details>
+</section>"""
     sponsors = ""
     for tier in meta["sponsors"]:
         logos = "".join(
@@ -218,6 +272,7 @@ def year_index(year, meta, talks, recordings, people):
     <h2>About the conference</h2>
     {overview}
     <ul class="structure">{structure}</ul>
+    {topics}
   </div>
   <aside>
     <h2>Venue</h2>
@@ -227,10 +282,18 @@ def year_index(year, meta, talks, recordings, people):
   </aside>
 </section>
 
+{photo}
+
 <section>
   <h2>Resources</h2>
   <ul class="resources">{resources}</ul>
 </section>
+
+{policies}
+
+{committee}
+
+{memorial}
 
 <section id="sponsors">
   <h2>Sponsors</h2>
@@ -260,6 +323,9 @@ def program_page(year, meta, talks, recordings, people):
             speakers = ", ".join(
                 f'<a href="../speakers/#{E(p["code"])}">{E(split_name(p["public_name"])[0])}</a>' for p in t["persons"])
             labels = []
+            for tag, prefixes in meta.get("session_tags", {}).items():
+                if any(norm(t["title"]).startswith(norm(p)) for p in prefixes):
+                    labels.append(tag)
             for x in (t.get("track"), t.get("type")):
                 if x and x != "Talk" and norm(x) not in [norm(l) for l in labels]:
                     labels.append(x)
@@ -340,7 +406,8 @@ def root_index(summaries):
 
 OLD_PATHS = {
     "schedule": "program/", "program-2026": "program/", "speakers": "speakers/",
-    "about": "", "info": "", "faq": "", "index": "", "home": "",
+    "about": "#committee", "info": "#committee", "faq": "", "index": "", "home": "",
+    "chris-blanton": "#memorial",
     "sponsorship-opportunites": "#sponsors", "sponsorship-opportunites-1": "#sponsors",
     "stack-science": "#sponsors", "contributor-jam": "program/",
 }

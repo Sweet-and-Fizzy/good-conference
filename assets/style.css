@@ -138,3 +138,22 @@ details summary { cursor: pointer; color: var(--ood-ocean-blue); font-weight: 60
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
+
+/* added sections */
+.topics { columns: 2; padding-left: 1.2rem; margin: .5rem 0 0; }
+.topics li { break-inside: avoid; }
+.photo { margin: 0; }
+.photo img { width: 100%; border-radius: 4px; display: block; }
+.committee { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem 2rem; }
+.committee .role h3 { font-family: var(--body); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .3rem; }
+.committee ul { list-style: none; padding: 0; margin: 0; font-size: .95rem; }
+.committee li { padding: .15rem 0; border-top: 1px solid var(--line); }
+.policies { grid-template-columns: 1fr 1fr; }
+.policies h2 { font-size: 1.25rem; }
+.memorial { background: var(--ood-light-gray); border-top: 4px solid var(--ood-purple); padding: 1.5rem; }
+.memorial-head { display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; align-items: start; }
+.memorial-head img { width: 140px; height: 140px; object-fit: cover; border-radius: 4px; }
+.memorial-head .lede { font-size: 1.05rem; }
+.memorial details { margin-top: 1rem; }
+.abstract li.nested, .speaker li.nested { margin-left: 1.25rem; list-style: circle; }
+@media (max-width: 720px) { .topics { columns: 1; } .policies { grid-template-columns: 1fr; } .memorial-head { grid-template-columns: 1fr; } }
