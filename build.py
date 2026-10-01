@@ -11,6 +11,7 @@ Inputs, per year, in data/:
 Output: site/ (static HTML + copied assets). No dependencies beyond the standard library.
 """
 import difflib
+import hashlib
 import html
 import json
 import os
@@ -26,6 +27,8 @@ YEARS = sorted(f[:-5] for f in os.listdir(DATA) if re.fullmatch(r"\d{4}\.json", 
 
 E = html.escape
 LOGO = open(os.path.join(ROOT, "assets", "img", "ood-logo.svg.frag")).read().strip()
+CSS_HASH = hashlib.sha1(open(os.path.join(ROOT, "assets", "style.css"), "rb").read()).hexdigest()[:8]
+CSS_NAME = f"style.{CSS_HASH}.css"
 
 
 # ---------- tiny markdown (pretalx abstracts are mostly plain text) ----------
@@ -191,7 +194,7 @@ def page(title, body, depth, description="", nav_year=None, years=YEARS, path="/
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
 <link rel="preload" href="{rel}assets/fonts/SerifaStd-Black.woff2" as="font" type="font/woff2" crossorigin>
-{extra_head}<link rel="stylesheet" href="{rel}assets/style.css">
+{extra_head}<link rel="stylesheet" href="{rel}assets/{CSS_NAME}">
 </head>
 <body>
 <header class="site-header">
@@ -461,7 +464,8 @@ def check_assets(meta):
 def main():
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
-    shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(OUT, "assets"))
+    shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(OUT, "assets"), ignore=shutil.ignore_patterns("*.frag"))
+    os.rename(os.path.join(OUT, "assets", "style.css"), os.path.join(OUT, "assets", CSS_NAME))
     summaries = []
     for year in YEARS:
         meta, conf, talks, recordings, people = load_year(year)
