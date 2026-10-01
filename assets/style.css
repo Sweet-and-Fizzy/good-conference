@@ -45,11 +45,17 @@ section { margin: 2.75rem 0; }
 /* header: black bar with the OOD wordmark, like openondemand.org */
 .site-header { background: #000; color: #fff; }
 .site-header .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: var(--max); margin: 0 auto; padding: .9rem 1.25rem; }
-.brand { display: flex; align-items: center; gap: .9rem; color: #fff; text-decoration: none; }
+.brand { display: flex; align-items: center; gap: .9rem; }
+.brand a { color: #fff; text-decoration: none; }
+.brand-ood { display: block; }
 .brand .ood-logo { height: 37px; width: auto; max-width: min(402px, 48vw); display: block; }
 .brand svg { height: auto; }
-.brand span { font-family: var(--display); font-weight: 900; font-size: 1.05rem; border-left: 1px solid rgba(255,255,255,.35); padding-left: .9rem; line-height: 1.1; }
+.brand-good { font-family: var(--display); font-weight: 900; font-size: 1.05rem; border-left: 1px solid rgba(255,255,255,.35); padding-left: .9rem; line-height: 1.1; }
 .brand small { display: block; font-family: var(--body); font-weight: 400; font-size: .72rem; color: rgba(255,255,255,.7); letter-spacing: .03em; }
+.site-header nav { display: flex; align-items: center; flex-wrap: wrap; }
+.nav-sep { width: 1px; height: 1.1rem; background: rgba(255,255,255,.35); margin-left: 1.25rem; }
+.site-header nav a.ext { font-weight: 400; color: rgba(255,255,255,.8); }
+.site-header nav a.ext:hover { color: #fff; }
 .site-header nav a { margin-left: 1.25rem; font-weight: 600; color: #fff; text-decoration: none; padding: .35rem 0; border-bottom: 2px solid transparent; }
 .site-header nav a:hover { color: #fff; border-bottom-color: rgba(255,255,255,.5); }
 .site-header nav a[aria-current] { border-bottom-color: var(--ood-red); }
@@ -136,7 +142,7 @@ details summary { cursor: pointer; color: var(--ood-ocean-blue); font-weight: 60
   .site-header .bar { flex-direction: column; align-items: flex-start; }
   .site-header nav a { margin: 0 1.25rem 0 0; }
   .brand small { display: none; }
-  .brand span { border-left: 0; padding-left: 0; }
+  .brand-good { border-left: 0; padding-left: 0; }
   .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
   .session { grid-template-columns: 1fr; gap: .4rem; }
   .session .when { grid-auto-flow: column; gap: .75rem; }

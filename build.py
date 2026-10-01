@@ -196,8 +196,11 @@ def page(title, body, depth, description="", nav_year=None, years=YEARS, path="/
 <body>
 <header class="site-header">
   <div class="bar">
-    <a class="brand" href="{rel}">{LOGO}<span>GOOD <small>Global Open OnDemand Conference</small></span></a>
-    <nav aria-label="Conference years">{links}</nav>
+    <div class="brand">
+      <a class="brand-ood" href="https://openondemand.org/" aria-label="Open OnDemand home">{LOGO}</a>
+      <a class="brand-good" href="{rel}">GOOD <small>Global Open OnDemand Conference</small></a>
+    </div>
+    <nav aria-label="Conference years and related sites">{links}<span class="nav-sep" aria-hidden="true"></span><a class="ext" href="https://openondemand.connectci.org/events">Events</a><a class="ext" href="https://ondemand.connectci.org">Community Hub</a></nav>
   </div>
 </header>
 <main>
