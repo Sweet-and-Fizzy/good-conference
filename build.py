@@ -25,8 +25,7 @@ OUT = os.path.join(ROOT, "site")
 YEARS = sorted(f[:-5] for f in os.listdir(DATA) if re.fullmatch(r"\d{4}\.json", f))
 
 E = html.escape
-LOGO_HEADER = open(os.path.join(ROOT, "assets", "img", "ood-logo.header.svg.frag")).read().strip()
-LOGO_FOOTER = open(os.path.join(ROOT, "assets", "img", "ood-logo.footer.svg.frag")).read().strip()
+LOGO = open(os.path.join(ROOT, "assets", "img", "ood-logo.svg.frag")).read().strip()
 
 
 # ---------- tiny markdown (pretalx abstracts are mostly plain text) ----------
@@ -133,7 +132,11 @@ def load_year(year):
             for ext in (".webp", ".jpg", ".png", ".jpeg"):
                 if os.path.exists(os.path.join(ROOT, "assets", "avatars", year, p["code"] + ext)):
                     person["avatar"] = f"assets/avatars/{year}/{p['code']}{ext}"
-    people = OrderedDict(sorted(people.items(), key=lambda kv: kv[1]["name"].split("[")[0].strip().split()[-1].lower()))
+    def sort_key(kv):
+        import unicodedata
+        surname = kv[1]["name"].split("[")[0].strip().split()[-1]
+        return unicodedata.normalize("NFKD", surname).encode("ascii", "ignore").decode().lower()
+    people = OrderedDict(sorted(people.items(), key=sort_key))
     return meta, conf, talks, recordings, people
 
 
@@ -144,11 +147,14 @@ def split_name(public_name):
 
 
 def fmt_day(d):
-    return datetime.strptime(d, "%Y-%m-%d").strftime("%A, %B %-d")
+    dt = datetime.strptime(d, "%Y-%m-%d")
+    return dt.strftime("%A, %B ") + str(dt.day)
 
 
 def fmt_duration(hhmm):
-    h, m = map(int, hhmm.split(":"))
+    if not hhmm or ":" not in str(hhmm):
+        return ""
+    h, m = map(int, str(hhmm).split(":")[:2])
     if h and m:
         return f"{h} h {m} min"
     return f"{h} h" if h else f"{m} min"
@@ -163,8 +169,15 @@ def fmt_time(hhmm):
 
 # ---------- page shell ----------
 
-def page(title, body, depth, description="", nav_year=None, years=YEARS):
-    rel = "../" * depth
+SITE = "https://good.openondemand.org"
+
+
+def page(title, body, depth, description="", nav_year=None, years=YEARS, path="/", image=None):
+    extra_head = f'<link rel="canonical" href="{SITE}{path}">\n<meta property="og:title" content="{E(title)}">\n<meta property="og:description" content="{E(description)}">\n<meta property="og:type" content="website">\n<meta property="og:url" content="{SITE}{path}">\n'
+    if image:
+        extra_head += f'<meta property="og:image" content="{SITE}/{image}">\n<link rel="preload" as="image" href="{"../" * depth}{image}">\n'''
+    extra_head = extra_head.replace("\n'", "\n")
+    rel = "../" * depth or "./"
     links = "".join(f'<a href="{rel}{y}/"{" aria-current=\"page\"" if y == nav_year else ""}>{y}</a>' for y in years)
     return f"""<!doctype html>
 <html lang="en">
@@ -176,13 +189,14 @@ def page(title, body, depth, description="", nav_year=None, years=YEARS):
 <link rel="icon" href="{rel}assets/img/GoodIcon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
-<link rel="stylesheet" href="{rel}assets/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
+<link rel="preload" href="{rel}assets/fonts/SerifaStd-Black.woff2" as="font" type="font/woff2" crossorigin>
+{extra_head}<link rel="stylesheet" href="{rel}assets/style.css">
 </head>
 <body>
 <header class="site-header">
   <div class="bar">
-    <a class="brand" href="{rel}">{LOGO_HEADER}<span>GOOD <small>Global Open OnDemand Conference</small></span></a>
+    <a class="brand" href="{rel}">{LOGO}<span>GOOD <small>Global Open OnDemand Conference</small></span></a>
     <nav aria-label="Conference years">{links}</nav>
   </div>
 </header>
@@ -195,7 +209,7 @@ def page(title, body, depth, description="", nav_year=None, years=YEARS):
       <p>An archive of the Global Open OnDemand (GOOD) conference sites, maintained by the <a href="https://openondemand.org/">Open OnDemand</a> project.</p>
       <p>The conferences were organized with <a href="https://numfocus.org/">NumFOCUS</a>.</p>
     </div>
-    <a href="https://openondemand.org/">{LOGO_FOOTER}</a>
+    <a href="https://openondemand.org/" aria-label="Open OnDemand">{LOGO}</a>
   </div>
 </footer>
 </body>
@@ -274,12 +288,12 @@ def year_index(year, meta, talks, recordings, people):
     <ul class="structure">{structure}</ul>
     {topics}
   </div>
-  <aside>
+  <div class="panel">
     <h2>Venue</h2>
     <p><b>{E(v['name'])}</b><br>{E(v['org'])}<br>{E(v['address'])}</p>
     <p>{E(v['thanks'])}</p>
-    <p><a href="{E(v['map'])}">Map</a></p>
-  </aside>
+    <p><a href="{E(v['map'])}">Map of the venue</a></p>
+  </div>
 </section>
 
 {photo}
@@ -301,7 +315,7 @@ def year_index(year, meta, talks, recordings, people):
   <p class="muted">{E(meta['organized_by'])}</p>
 </section>
 """
-    return page(f"{meta['title']} · {meta['dates']}", body, 1, meta["tagline"], nav_year=year)
+    return page(f"{meta['title']} · {meta['dates']}", body, 1, meta["tagline"], nav_year=year, path=f"/{year}/", image=meta["hero_image"])
 
 
 def program_page(year, meta, talks, recordings, people):
@@ -331,21 +345,21 @@ def program_page(year, meta, talks, recordings, people):
                     labels.append(x)
             tags = " ".join(f'<span class="tag">{E(x)}</span>' for x in labels)
             vid = next((recordings[c] for c in t["codes"] if c in recordings), None)
-            rec = f' <a class="watch" href="https://vimeo.com/{vid}">Watch recording</a>' if vid else ""
+            rec = f' <a class="watch" href="https://vimeo.com/{vid}">Watch recording<span class="visually-hidden"> of {E(t["title"])}</span></a>' if vid else ""
             abstract = md(t.get("abstract")) + (md(t.get("description")) if t.get("description") else "")
-            detail = f"<details><summary>Abstract</summary><div class=\"abstract\">{abstract}</div></details>" if abstract.strip() else ""
+            detail = f"<details><summary>Abstract<span class=\"visually-hidden\"> for {E(t['title'])}</span></summary><div class=\"abstract\">{abstract}</div></details>" if abstract.strip() else ""
             rows += f"""
-<article class="session" id="{E(t['code'])}">
+<article class="session" id="{E(t['code'])}">{"".join(f'<span id="{E(c)}"></span>' for c in t['codes'][1:])}
   <div class="when"><time>{E(fmt_time(t['start']))}</time><span class="dur">{E(fmt_duration(t['duration']))}</span><span class="room">{E(" · ".join(t['rooms']))}</span></div>
   <div class="what">
     <h3>{E(t['title'])}</h3>
     <p class="who">{speakers}</p>
-    <p class="meta">{tags}{rec}</p>
+    {("<p class=\"meta\">" + tags + rec + "</p>") if (tags or rec) else ""}
     {detail}
   </div>
 </article>"""
         body += f'<section class="day" id="d{d}"><h2>{E(fmt_day(d))}</h2>{rows}</section>'
-    return page(f"Program · {meta['title']}", body, 2, f"The {meta['title']} program: every session with abstracts and speakers.", nav_year=year)
+    return page(f"Program · {meta['title']}", body, 2, f"The {meta['title']} program: every session with abstracts and speakers.", nav_year=year, path=f"/{year}/program/")
 
 
 def speakers_page(year, meta, talks, recordings, people):
@@ -355,7 +369,7 @@ def speakers_page(year, meta, talks, recordings, people):
         name, org = split_name(p["name"])
         img = f'<img src="../../{E(p["avatar"])}" alt="" loading="lazy">' if p.get("avatar") else '<span class="avatar-fallback" aria-hidden="true"></span>'
         sessions = "".join(f'<li><a href="../program/#{E(c)}">{E(by_code[c]["title"])}</a></li>' for c in p["talks"])
-        bio = f"<details><summary>Biography</summary>{md(p['bio'])}</details>" if p["bio"].strip() else ""
+        bio = f"<details><summary>Biography<span class=\"visually-hidden\"> of {E(name)}</span></summary>{md(p['bio'])}</details>" if p["bio"].strip() else ""
         cards += f"""
 <article class="speaker" id="{E(code)}">
   <div class="avatar">{img}</div>
@@ -372,9 +386,9 @@ def speakers_page(year, meta, talks, recordings, people):
   <h1>Speakers</h1>
   <p class="muted">{len(people)} speakers, listed by surname.</p>
 </section>
-<section class="speakers">{cards}</section>
+<section class="speakers" aria-labelledby="all-speakers"><h2 id="all-speakers" class="visually-hidden">All speakers</h2>{cards}</section>
 """
-    return page(f"Speakers · {meta['title']}", body, 2, f"Speakers at {meta['title']}.", nav_year=year)
+    return page(f"Speakers · {meta['title']}", body, 2, f"Speakers at {meta['title']}.", nav_year=year, path=f"/{year}/speakers/")
 
 
 # ---------- root ----------
@@ -399,17 +413,15 @@ def root_index(summaries):
 </section>
 <section class="years">{cards}</section>
 """
-    return page("GOOD Conference Archive", body, 0, "Archive of the Global Open OnDemand (GOOD) conferences: programs, speakers, and recordings.")
+    return page("GOOD Conference Archive", body, 0, "Archive of the Global Open OnDemand (GOOD) conferences: programs, speakers, and recordings.", path="/")
 
 
 # ---------- redirects (old Squarespace paths, per hostname) ----------
 
 OLD_PATHS = {
-    "schedule": "program/", "program-2026": "program/", "speakers": "speakers/",
+    "schedule": "program/", "speakers": "speakers/",
     "about": "#committee", "info": "#committee", "faq": "", "index": "", "home": "",
-    "chris-blanton": "#memorial",
-    "sponsorship-opportunites": "#sponsors", "sponsorship-opportunites-1": "#sponsors",
-    "stack-science": "#sponsors", "contributor-jam": "program/",
+    "sponsorship-opportunites": "#sponsors", "contributor-jam": "program/",
 }
 
 
@@ -417,17 +429,31 @@ def redirects(summaries):
     lines = ["# Old hostnames serve their year; old Squarespace paths map onto the new pages."]
     for s in summaries:
         m = s["meta"]
-        host = m["hostname"]
+        host = m.get("hostname")
+        if not host:
+            continue
+        paths = dict(OLD_PATHS, **m.get("old_paths", {}))
         for h in (f"https://{host}", f"https://www.{host}"):
-            for old, new in OLD_PATHS.items():
+            lines.append(f"{h}/  /{m['year']}/  301")
+            for old, new in paths.items():
                 lines.append(f"{h}/{old}  /{m['year']}/{new}  301")
-            lines.append(f"{h}/assets/*  /assets/:splat  200")
-            lines.append(f"{h}/{m['year']}/*  /{m['year']}/:splat  200")
             lines.append(f"{h}/*  /{m['year']}/:splat  200")
     return "\n".join(lines) + "\n"
 
 
 # ---------- main ----------
+
+def check_assets(meta):
+    paths = [meta.get("hero_image")] + [o["logo"] for t in meta["sponsors"] for o in t["orgs"]]
+    if meta.get("photo"):
+        paths.append(meta["photo"]["src"])
+    if meta.get("memorial"):
+        paths.append(meta["memorial"]["photo"])
+    paths += [r["url"] for r in meta["resources"] if not r["url"].startswith("http")]
+    missing = [p for p in paths if p and not os.path.exists(os.path.join(ROOT, p))]
+    if missing:
+        raise SystemExit(f"{meta['year']}: missing asset files: {missing}")
+
 
 def main():
     if os.path.isdir(OUT):
@@ -436,6 +462,7 @@ def main():
     summaries = []
     for year in YEARS:
         meta, conf, talks, recordings, people = load_year(year)
+        check_assets(meta)
         write(os.path.join(OUT, year, "index.html"), year_index(year, meta, talks, recordings, people))
         write(os.path.join(OUT, year, "program", "index.html"), program_page(year, meta, talks, recordings, people))
         write(os.path.join(OUT, year, "speakers", "index.html"), speakers_page(year, meta, talks, recordings, people))

@@ -38,6 +38,7 @@ section { margin: 2.75rem 0; }
 .note { font-size: .95rem; }
 .eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; font-weight: 700; color: var(--ood-red); margin: 0 0 .5rem; }
 .eyebrow a { color: inherit; text-decoration: none; }
+.eyebrow a:hover, .eyebrow a:focus-visible { text-decoration: underline; }
 .lede { font-size: 1.25rem; }
 .stats { color: var(--muted); font-variant-numeric: tabular-nums; }
 
@@ -45,7 +46,8 @@ section { margin: 2.75rem 0; }
 .site-header { background: #000; color: #fff; }
 .site-header .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: var(--max); margin: 0 auto; padding: .9rem 1.25rem; }
 .brand { display: flex; align-items: center; gap: .9rem; color: #fff; text-decoration: none; }
-.brand .ood-logo { height: 37px; width: auto; display: block; }
+.brand .ood-logo { height: 37px; width: auto; max-width: min(402px, 48vw); display: block; }
+.brand svg { height: auto; }
 .brand span { font-family: var(--display); font-weight: 900; font-size: 1.05rem; border-left: 1px solid rgba(255,255,255,.35); padding-left: .9rem; line-height: 1.1; }
 .brand small { display: block; font-family: var(--body); font-weight: 400; font-size: .72rem; color: rgba(255,255,255,.7); letter-spacing: .03em; }
 .site-header nav a { margin-left: 1.25rem; font-weight: 600; color: #fff; text-decoration: none; padding: .35rem 0; border-bottom: 2px solid transparent; }
@@ -57,11 +59,11 @@ section { margin: 2.75rem 0; }
 .site-footer .bar { max-width: var(--max); margin: 0 auto; padding: 2rem 1.25rem 2.5rem; display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; }
 .site-footer p { margin: .25rem 0; }
 .site-footer a { color: #fff; }
-.site-footer .ood-logo { height: 32px; width: auto; display: block; }
+.site-footer .ood-logo { height: 32px; width: auto; max-width: 100%; display: block; }
 
 /* hero */
 .hero { position: relative; border-radius: 4px; overflow: hidden; min-height: 340px; background-size: cover; background-position: center; display: flex; align-items: flex-end; margin-top: 1.5rem; }
-.hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.82) 100%); }
+.hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.6) 40%, rgba(0,0,0,.88) 100%); }
 .hero-text { position: relative; padding: 2rem; color: #fff; max-width: 700px; }
 .hero-text .eyebrow { color: #fff; }
 .hero-text .stats { color: rgba(255,255,255,.85); }
@@ -74,8 +76,8 @@ section { margin: 2.75rem 0; }
 
 /* year index */
 .two-col { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; }
-.two-col aside { background: var(--ood-light-gray); border-top: 4px solid var(--ood-purple); padding: 1.25rem 1.5rem; align-self: start; }
-.two-col aside h2 { font-size: 1.2rem; }
+.two-col .panel { background: var(--ood-light-gray); border-top: 4px solid var(--ood-purple); padding: 1.25rem 1.5rem; align-self: start; }
+.two-col .panel h2 { font-size: 1.2rem; }
 .structure { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: .35rem; }
 .structure b { display: inline-block; min-width: 10.5rem; color: var(--ood-red); }
 .resources { padding-left: 1.2rem; }
@@ -97,11 +99,11 @@ section { margin: 2.75rem 0; }
 .session h3 { margin-bottom: .2rem; }
 .session .who { margin: 0 0 .3rem; }
 .session .meta { margin: 0 0 .4rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
-.tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; background: var(--ood-light-gray); border-radius: 2px; padding: .15rem .55rem; color: var(--ood-purple); }
+.tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; background: var(--ood-light-gray); border-radius: 2px; padding: .15rem .55rem; color: #4a5080; }
 .watch { font-weight: 700; color: var(--ood-red); }
 .watch::before { content: "▶ "; font-size: .75em; }
 details summary { cursor: pointer; color: var(--ood-ocean-blue); font-weight: 600; }
-.abstract { max-width: 68ch; }
+.abstract { max-width: 68ch; overflow-wrap: anywhere; }
 .abstract p { margin: .5rem 0; }
 
 /* speakers */
@@ -117,18 +119,24 @@ details summary { cursor: pointer; color: var(--ood-ocean-blue); font-weight: 60
 .intro { margin-top: 3rem; }
 .years { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
 .year-card { position: relative; display: block; min-height: 280px; border-radius: 4px; overflow: hidden; background-size: cover; background-position: center; color: #fff; text-decoration: none; }
-.year-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.85)); }
+.year-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,.55) 45%, rgba(0,0,0,.9)); }
 .year-card > div { position: absolute; inset: auto 0 0; padding: 1.5rem; }
 .year-card h2, .year-card p { color: #fff; margin: 0 0 .2rem; }
 .year-card .eyebrow { color: #fff; }
 .year-card .stats { color: rgba(255,255,255,.85); }
 .year-card:hover { color: #fff; outline: 4px solid var(--ood-red); }
 
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 3px solid var(--ood-ocean-blue); outline-offset: 2px; }
+.site-header :focus-visible, .site-footer :focus-visible, .hero :focus-visible, .year-card:focus-visible { outline-color: #fff; }
+.site-header .bar { flex-wrap: wrap; }
 @media (max-width: 720px) {
   h1 { font-size: 2rem; }
   .hero-text h1 { font-size: 2.2rem; }
   .site-header .bar { flex-direction: column; align-items: flex-start; }
   .site-header nav a { margin: 0 1.25rem 0 0; }
+  .brand small { display: none; }
+  .brand span { border-left: 0; padding-left: 0; }
   .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
   .session { grid-template-columns: 1fr; gap: .4rem; }
   .session .when { grid-auto-flow: column; gap: .75rem; }
@@ -156,4 +164,8 @@ details summary { cursor: pointer; color: var(--ood-ocean-blue); font-weight: 60
 .memorial-head .lede { font-size: 1.05rem; }
 .memorial details { margin-top: 1rem; }
 .abstract li.nested, .speaker li.nested { margin-left: 1.25rem; list-style: circle; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 3px solid var(--ood-ocean-blue); outline-offset: 2px; }
+.site-header :focus-visible, .site-footer :focus-visible, .hero :focus-visible, .year-card:focus-visible { outline-color: #fff; }
+.site-header .bar { flex-wrap: wrap; }
 @media (max-width: 720px) { .topics { columns: 1; } .policies { grid-template-columns: 1fr; } .memorial-head { grid-template-columns: 1fr; } }

@@ -7,8 +7,7 @@
   "hostname": "good2026.openondemand.org",
   "program_source": "good2026-schedule.json",
   "recordings_source": null,
-  "hero_image": "assets/img/venue-2026.png",
-  "hero_image_alt": "The University Guest House and Conference Center at the University of Utah, with the Wasatch Range behind it",
+  "hero_image": "assets/img/venue-2026.webp",
   "overview": [
     "GOOD 2026 brought the global Open OnDemand community to Salt Lake City for four days of talks, tutorials, birds-of-a-feather sessions, and hands-on work with the core team.",
     "The conference opened with a Contributor Jam on March 9, followed by tutorials on the morning of March 10 and the main conference through March 12. Conference topics included AI and OOD, cloud integration, apps and the Appverse, OOD for education, client impacts, security and data privacy, customizations, and core development."
@@ -132,7 +131,7 @@
     "Core Development"
   ],
   "photo": {
-    "src": "assets/img/GOOD2025-1263_1.jpg",
+    "src": "assets/img/GOOD2025-1263_1.webp",
     "alt": "Attendees at a GOOD Contributor Jam"
   },
   "accessibility": [
@@ -225,5 +224,15 @@
       "Repurposed Hardware to Modern Research",
       "Streamlining LLM access"
     ]
+  },
+  "old_paths": {
+    "program-2026": "program/",
+    "sponsorship-opportunites-1": "#sponsors",
+    "chris-blanton": "../2025/#memorial",
+    "call-for-proposals": "program/",
+    "tickets": "",
+    "contact": "",
+    "nf-fundraising": "",
+    "new-page-1": ""
   }
 }
