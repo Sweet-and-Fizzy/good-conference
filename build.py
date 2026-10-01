@@ -169,7 +169,7 @@ def fmt_time(hhmm):
 
 # ---------- page shell ----------
 
-SITE = "https://good.openondemand.org"
+SITE = "https://connectci-good-conference.netlify.app"
 
 
 def page(title, body, depth, description="", nav_year=None, years=YEARS, path="/", image=None):

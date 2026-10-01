@@ -1,2 +1,6 @@
 site/
 __pycache__/
+
+# Local Netlify folder
+.netlify
+.netlify/
