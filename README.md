@@ -42,3 +42,15 @@ Netlify, publish directory `site/`. Each year's old hostname is a domain
 alias on the site; `_redirects` routes by hostname. Speaker photos and
 abstracts are © their authors; conference photos and logos belong to the
 conference sponsors and hosts.
+
+## Review deployment
+
+While under review the site is deployed manually to
+<https://connectci-good-conference.netlify.app> from this repo:
+
+    python3 build.py && netlify deploy --prod --dir site --no-build
+
+Continuous deploys from GitHub can be enabled from the Netlify UI once the
+repo has its permanent home (the API-side link cannot install a deploy key on
+a private repo). When the old hostnames are added as domain aliases, the
+rules in `site/_redirects` route each to its year.
