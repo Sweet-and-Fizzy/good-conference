@@ -25,6 +25,8 @@ OUT = os.path.join(ROOT, "site")
 YEARS = sorted(f[:-5] for f in os.listdir(DATA) if re.fullmatch(r"\d{4}\.json", f))
 
 E = html.escape
+LOGO_HEADER = open(os.path.join(ROOT, "assets", "img", "ood-logo.header.svg.frag")).read().strip()
+LOGO_FOOTER = open(os.path.join(ROOT, "assets", "img", "ood-logo.footer.svg.frag")).read().strip()
 
 
 # ---------- tiny markdown (pretalx abstracts are mostly plain text) ----------
@@ -148,19 +150,29 @@ def page(title, body, depth, description="", nav_year=None, years=YEARS):
 <title>{E(title)}</title>
 <meta name="description" content="{E(description)}">
 <link rel="icon" href="{rel}assets/img/GoodIcon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="{rel}assets/style.css">
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="{rel}"><img src="{rel}assets/img/GoodIcon.png" alt="" width="36" height="36"><span>GOOD <small>Global Open OnDemand Conference</small></span></a>
-  <nav aria-label="Conference years">{links}</nav>
+  <div class="bar">
+    <a class="brand" href="{rel}">{LOGO_HEADER}<span>GOOD <small>Global Open OnDemand Conference</small></span></a>
+    <nav aria-label="Conference years">{links}</nav>
+  </div>
 </header>
 <main>
 {body}
 </main>
 <footer class="site-footer">
-  <p>An archive of the Global Open OnDemand (GOOD) conference sites, maintained by the <a href="https://openondemand.org/">Open OnDemand</a> project. The conferences were organized with <a href="https://numfocus.org/">NumFOCUS</a>.</p>
-  <p><a href="https://openondemand.org/"><img src="{rel}assets/img/ood-logo.svg" alt="Open OnDemand" height="28"></a></p>
+  <div class="bar">
+    <div>
+      <p>An archive of the Global Open OnDemand (GOOD) conference sites, maintained by the <a href="https://openondemand.org/">Open OnDemand</a> project.</p>
+      <p>The conferences were organized with <a href="https://numfocus.org/">NumFOCUS</a>.</p>
+    </div>
+    <a href="https://openondemand.org/">{LOGO_FOOTER}</a>
+  </div>
 </footer>
 </body>
 </html>
