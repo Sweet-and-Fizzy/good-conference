@@ -24,7 +24,9 @@
 * { box-sizing: border-box; }
 html { color-scheme: light; }
 body { margin: 0; font-family: var(--body); font-size: 17px; line-height: 1.55; color: var(--ink); background: var(--paper); }
-a { color: var(--ood-ocean-blue); }
+/* text links are black, bold, underlined */
+a { color: var(--ink); }
+a:not([class]) { font-weight: 700; text-decoration: underline; }
 a:hover { color: var(--ood-red); }
 h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.15; text-wrap: balance; margin: 0 0 .5em; }
 h1 { font-size: 2.6rem; }
@@ -52,6 +54,8 @@ section { margin: 2.75rem 0; }
 .brand .ood-logo { height: 26px; width: auto; max-width: min(283px, 40vw); display: block; }
 .brand svg { height: auto; }
 .brand-good { font-family: var(--display); font-weight: 900; font-size: 1.6rem; letter-spacing: .01em; border-left: 1px solid rgba(255,255,255,.35); padding-left: 1rem; line-height: 1; }
+.brand .good-logo { display: block; height: 46px; width: auto; }
+.good-logo-color { display: block; width: 360px; max-width: 100%; height: auto; }
 .brand small { display: block; font-family: var(--body); font-weight: 400; font-size: .72rem; color: rgba(255,255,255,.7); letter-spacing: .03em; margin-top: .25rem; }
 .site-header nav { display: flex; align-items: center; flex-wrap: wrap; }
 .nav-sep { width: 1px; height: 1.1rem; background: rgba(255,255,255,.35); margin-left: 1.25rem; }
@@ -61,8 +65,8 @@ section { margin: 2.75rem 0; }
 .site-header nav a:hover { color: #fff; border-bottom-color: rgba(255,255,255,.5); }
 .site-header nav a[aria-current] { border-bottom-color: var(--ood-red); }
 
-/* footer: purple band, as on the OOD site */
-.site-footer { background: var(--ood-purple); color: #fff; margin-top: 3rem; }
+/* footer: black band, matching the header */
+.site-footer { background: #000; color: #fff; margin-top: 3rem; }
 .site-footer .bar { max-width: var(--max); margin: 0 auto; padding: 2rem 1.25rem 2.5rem; display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; }
 .site-footer p { margin: .25rem 0; }
 .site-footer a { color: #fff; }
@@ -83,10 +87,10 @@ section { margin: 2.75rem 0; }
 
 /* year index */
 .two-col { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; }
-.two-col .panel { background: var(--ood-light-gray); border-top: 4px solid var(--ood-purple); padding: 1.25rem 1.5rem; align-self: start; }
+.two-col .panel { background: var(--ood-light-gray); border-top: 4px solid var(--ood-red); padding: 1.25rem 1.5rem; align-self: start; }
 .two-col .panel h2 { font-size: 1.2rem; }
 .structure { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: .35rem; }
-.structure b { display: inline-block; min-width: 10.5rem; color: var(--ood-red); }
+.structure b { display: inline-block; min-width: 10.5rem; }
 .resources { padding-left: 1.2rem; }
 .resources li { margin: .35rem 0; }
 .tier { margin: 1rem 0 1.5rem; }
@@ -97,9 +101,11 @@ section { margin: 2.75rem 0; }
 
 /* program */
 .toc a { margin-right: .25rem; }
-.day { border-top: 4px solid var(--ood-purple); padding-top: 1rem; }
+.day { border-top: 4px solid var(--ink); padding-top: 1rem; }
 .day h2 { margin-bottom: 1rem; }
 .session { display: grid; grid-template-columns: 170px 1fr; gap: 1.25rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+/* extra ids for sessions merged across rooms: keep them as link targets, out of the grid */
+.session > span[id] { position: absolute; }
 .session .when { display: grid; gap: .15rem; font-size: .95rem; color: var(--muted); align-content: start; }
 .session time { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
 .session .room { font-size: .85rem; }
@@ -109,7 +115,7 @@ section { margin: 2.75rem 0; }
 .tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; background: var(--ood-light-gray); border-radius: 2px; padding: .15rem .55rem; color: #4a5080; }
 .watch { font-weight: 700; color: var(--ood-red); }
 .watch::before { content: "▶ "; font-size: .75em; }
-details summary { cursor: pointer; color: var(--ood-ocean-blue); font-weight: 600; }
+details summary { cursor: pointer; color: var(--ink); font-weight: 700; }
 .abstract { max-width: 68ch; overflow-wrap: anywhere; }
 .abstract p { margin: .5rem 0; }
 
@@ -144,6 +150,7 @@ details summary { cursor: pointer; color: var(--ood-ocean-blue); font-weight: 60
   .site-header nav a { margin: 0 1.25rem 0 0; }
   .brand small { display: none; }
   .brand-good { font-size: 1.3rem; }
+  .brand .good-logo { height: 38px; }
   .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
   .session { grid-template-columns: 1fr; gap: .4rem; }
   .session .when { grid-auto-flow: column; gap: .75rem; }
@@ -155,6 +162,8 @@ details summary { cursor: pointer; color: var(--ood-ocean-blue); font-weight: 60
 }
 
 /* added sections */
+.topics-box { border: 1px solid var(--ink); border-radius: 4px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+.topics-box h3 { margin-bottom: .25rem; }
 .topics { columns: 2; padding-left: 1.2rem; margin: .5rem 0 0; }
 .topics li { break-inside: avoid; }
 .photo { margin: 0; }
@@ -165,7 +174,7 @@ details summary { cursor: pointer; color: var(--ood-ocean-blue); font-weight: 60
 .committee li { padding: .15rem 0; border-top: 1px solid var(--line); }
 .policies { grid-template-columns: 1fr 1fr; }
 .policies h2 { font-size: 1.25rem; }
-.memorial { background: var(--ood-light-gray); border-top: 4px solid var(--ood-purple); padding: 1.5rem; }
+.memorial { background: var(--ood-light-gray); border-top: 4px solid var(--ink); padding: 1.5rem; }
 .memorial-head { display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; align-items: start; }
 .memorial-head img { width: 140px; height: 140px; object-fit: cover; border-radius: 4px; }
 .memorial-head .lede { font-size: 1.05rem; }

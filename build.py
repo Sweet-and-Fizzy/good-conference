@@ -201,7 +201,7 @@ def page(title, body, depth, description="", nav_year=None, years=YEARS, path="/
   <div class="bar">
     <div class="brand">
       <a class="brand-ood" href="https://openondemand.org/" aria-label="Open OnDemand home">{LOGO}</a>
-      <a class="brand-good" href="{rel}">GOOD <small>Global Open OnDemand Conference</small></a>
+      <a class="brand-good" href="{rel}"><img class="good-logo" src="{rel}assets/img/good-logo-white.png" alt="GOOD: Global Open OnDemand Conference" width="500" height="164"></a>
     </div>
     <nav aria-label="Conference years and related sites">{links}<span class="nav-sep" aria-hidden="true"></span><a class="ext" href="https://openondemand.connectci.org/events">Events</a><a class="ext" href="https://ondemand.connectci.org">Community Hub</a></nav>
   </div>
@@ -244,7 +244,7 @@ def year_index(year, meta, talks, recordings, people):
         for r in meta["resources"])
     topics = ""
     if meta.get("conference_topics"):
-        topics = "<h3>Conference topics</h3><ul class=\"topics\">" + "".join(f"<li>{E(x)}</li>" for x in meta["conference_topics"]) + "</ul>"
+        topics = "<div class=\"topics-box\"><h3>Conference topics</h3><ul class=\"topics\">" + "".join(f"<li>{E(x)}</li>" for x in meta["conference_topics"]) + "</ul></div>"
     photo = ""
     if meta.get("photo"):
         photo = f'<figure class="photo"><img src="../{E(meta["photo"]["src"])}" alt="{E(meta["photo"]["alt"])}" loading="lazy"></figure>'
@@ -414,7 +414,7 @@ def root_index(summaries):
 </a>"""
     body = f"""
 <section class="narrow intro">
-  <h1>Global Open OnDemand Conference</h1>
+  <h1><img class="good-logo-color" src="assets/img/good-logo-color.png" alt="GOOD: Global Open OnDemand Conference" width="500" height="164"></h1>
   <p class="lede">GOOD brings together the users, administrators, and developers of <a href="https://openondemand.org/">Open OnDemand</a> for talks, tutorials, and a Contributor Jam with the core team. These pages archive each year's program, speakers, sponsors, and recordings.</p>
 </section>
 <section class="years">{cards}</section>
