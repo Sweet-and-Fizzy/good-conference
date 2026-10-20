@@ -46,7 +46,7 @@ conference sponsors and hosts.
 ## Review deployment
 
 While under review the site is deployed manually to
-<https://connectci-good-conference.netlify.app> from this repo:
+<https://ood-good-conference.netlify.app> from this repo:
 
     python3 build.py && netlify deploy --prod --dir site --no-build
 
