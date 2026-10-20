@@ -45,12 +45,7 @@ conference sponsors and hosts.
 
 ## Review deployment
 
-While under review the site is deployed manually to
-<https://ood-good-conference.netlify.app> from this repo:
-
-    python3 build.py && netlify deploy --prod --dir site --no-build
-
-Continuous deploys from GitHub can be enabled from the Netlify UI once the
-repo has its permanent home (the API-side link cannot install a deploy key on
-a private repo). When the old hostnames are added as domain aliases, the
-rules in `site/_redirects` route each to its year.
+While under review the site is at <https://ood-good-conference.netlify.app>.
+Netlify builds and deploys every push to `main`, and pull requests get deploy
+previews. When the old hostnames are added as domain aliases, the rules in
+`site/_redirects` route each to its year.
